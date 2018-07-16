@@ -82,5 +82,21 @@ describe('API Routes', () => {
         done();
       })
     })
+
+    it('should return an error message if the POST is formatted incorrectly', done => {
+      chai.request(server)
+      .post('/api/v1/items')
+      .send({
+        incorrectProperty: 'whoops'
+      })
+      .end((error, response) => {
+        response.should.have.status(422);
+        response.should.be.json;
+        response.body.should.be.a('object');
+        response.body.should.have.property('error');
+        response.body.error.should.equal(`Expected format: { name: <String>. You're missing a "name" property.`)
+        done()
+      })
+    })
   })
 })
