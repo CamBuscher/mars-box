@@ -37,7 +37,7 @@ $(document).ready(() => {
       })
       .then(response => response.json())
       .then(id => {
-        appendItem(name, false, id)
+        appendItem(name, false, id.id)
         $('#item_input').val('')
         $('.error_space').html(``)
       })
