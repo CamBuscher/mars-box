@@ -1,6 +1,8 @@
 $(document).ready(() => {
+
+  $('.add_item_form').on('submit', createNewItem)
   
-  const appendItem = (name, packed, id) => {
+  function appendItem(name, packed, id) {
     let packedCheckBox
 
     if (packed) {
@@ -19,7 +21,24 @@ $(document).ready(() => {
       </div>`)
   }
 
-  const getAllItems = () => {
+  function createNewItem(e) {
+    e.preventDefault()
+    const name = $('#item_input').val()
+    
+    return fetch('/api/v1/items', {
+      body: JSON.stringify({name}),
+      headers: {
+        'content-type': 'application/json'
+      },
+      method: 'POST'
+    })
+    .then(response => response.json())
+    .then(id => {
+      appendItem(name, false, id)
+    })
+  }
+
+  function getAllItems() {
     return fetch('/api/v1/items')
       .then(response => response.json())
       .then(items => {
