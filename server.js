@@ -44,4 +44,18 @@ app.post('/api/v1/items', (request, response) => {
     })
 })
 
+app.delete('/api/v1/items/:id', (request, response) => {
+  const {id} = request.params;
+
+  database('items').where('id', id).del()
+    .then(deletedRows => {
+      if (deletedRows === 0) {
+        response.status(404).json({ error: "Please enter a valid ID." })
+      } else {
+        response.sendStatus(204)
+      }
+    })
+    .catch(error => response.status(500).json(error))
+})
+
 module.exports = app
