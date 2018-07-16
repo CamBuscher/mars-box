@@ -123,4 +123,22 @@ describe('API Routes', () => {
         })
     })
   })
+
+  describe('PATCH /api/v1/items/:id', () => {
+    it('should return an object with ID and updated status', done => {
+      chai.request(server)
+      .patch('/api/v1/items/1')
+      .send({ packed: true })
+      .end(((error, response) => {
+        response.should.have.status(201)
+        response.should.be.json
+        response.body.should.be.a('object')
+        response.body.should.have.property('id')
+        response.body.id.should.equal('1')
+        response.body.should.have.property('packed')
+        response.body.packed.should.equal(true)
+        done()
+      }))
+    })
+  })
 })
