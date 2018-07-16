@@ -24,3 +24,5 @@ app.get('/api/v1/items', (request, response) => {
       response.status(500).json({error})
     })
 })
+
+module.exports = app
