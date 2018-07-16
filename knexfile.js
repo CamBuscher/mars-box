@@ -11,7 +11,7 @@ module.exports = {
   },
   test: {
     client: 'pg',
-    connection: 'postgres://localhost/mars-box',
+    connection: 'postgres://localhost/marsbox',
     migrations: {
       directory: './db/migrations'
     },
@@ -22,7 +22,7 @@ module.exports = {
   },
   development: {
     client: 'pg',
-    connection: 'postgres://localhost/mars-box',
+    connection: 'postgres://localhost/marsbox',
     migrations: {
       directory: './db/migrations'
     },
