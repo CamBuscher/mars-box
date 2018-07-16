@@ -1,14 +1,15 @@
 $(document).ready(() => {
 
   $('.add_item_form').on('submit', createNewItem)
+  $('.list').on('click', '.packed_check', updatePackedStatus);
   
   function appendItem(name, packed, id) {
     let packedCheckBox
 
     if (packed) {
-      packedCheckBox = `<input type="checkbox" checked>`
+      packedCheckBox = `<input class='packed_check' type="checkbox" checked>`
     } else {
-      packedCheckBox = `<input type="checkbox">`
+      packedCheckBox = `<input class='packed_check' type="checkbox">`
     }
 
     $('.list').append(`
@@ -50,6 +51,19 @@ $(document).ready(() => {
       .catch(error => {
         console.log(error)
       })
+  }
+
+  function updatePackedStatus() {
+    const id = $(this).parent().attr('id');
+    const packed = $(this).is(':checked');
+
+    return fetch(`/api/v1/items/${id}`, {
+      body: JSON.stringify({ packed }),
+      headers: {
+        'content-type': 'application/json'
+      },
+      method: 'PATCH'
+    })
   }
 
   getAllItems()
