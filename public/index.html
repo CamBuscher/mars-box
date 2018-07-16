@@ -5,11 +5,31 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Mars Box</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Coda+Caption:800" rel="stylesheet">
   <link rel="stylesheet" type="text/css" media="screen" href="reset.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
 </head>
 <body>
   <h1>Mars Box</h1>
+
+  <form class='add_item_form'>
+    <input type="text" name="item" id="item_input">
+    <button type='submit'>Add Item</button>
+  </form>
+
+  <hr>
+
+  <div class='list'>
+
+    <div class='list_item'>
+      <h2 class='item_name'>Item 1</h2>
+      <button class='item_delete'>Delete</button>
+      <br>
+      <input type="checkbox">
+      <span>Packed</span>
+    </div>
+
+  </div>
   <script src="scripts.js"></script>
 </body>
 </html>
