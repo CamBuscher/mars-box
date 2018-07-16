@@ -65,4 +65,22 @@ describe('API Routes', () => {
       })
     })
   })
+
+  describe('POST /api/v1/items', () => {
+    it('should return the id of the freshly created item', done => {
+      chai.request(server)
+      .post('/api/v1/items')
+      .send({
+        name: 'rocket fuel'
+      })
+      .end((error, response) => {
+        response.should.have.status(201);
+        response.should.be.json;
+        response.body.should.be.a('object');
+        response.body.should.have.property('id');
+        response.body.id.should.equal(4);
+        done();
+      })
+    })
+  })
 })
