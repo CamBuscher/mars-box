@@ -2,7 +2,8 @@ $(document).ready(() => {
 
   $('.add_item_form').on('submit', createNewItem)
   $('.list').on('click', '.packed_check', updatePackedStatus);
-  
+  $('.list').on('click', '.item_delete', deleteItem);
+
   function appendItem(name, packed, id) {
     let packedCheckBox
 
@@ -64,6 +65,18 @@ $(document).ready(() => {
       },
       method: 'PATCH'
     })
+  }
+
+  function deleteItem() {
+    const id = $(this).parent().attr('id');
+
+    return fetch(`/api/v1/items/${id}`, {
+      method: 'DELETE'
+    })
+    .then(() => {
+      $(this).parent().remove();
+    })
+    .catch(error => console.log(error))
   }
 
   getAllItems()
