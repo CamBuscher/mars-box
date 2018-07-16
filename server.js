@@ -58,7 +58,7 @@ app.delete('/api/v1/items/:id', (request, response) => {
     .catch(error => response.status(500).json(error))
 })
 
-app.put('/api/v1/items/:id', (request, response) => {
+app.patch('/api/v1/items/:id', (request, response) => {
   const {id} = request.params;
 
   const { packed } = request.body;
