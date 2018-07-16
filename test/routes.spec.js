@@ -140,5 +140,19 @@ describe('API Routes', () => {
         done()
       }))
     })
+
+    it('should return an error if body is incorrect', done => {
+      chai.request(server)
+        .patch('/api/v1/items/1')
+        .send({ })
+        .end(((error, response) => {
+          response.should.have.status(422)
+          response.should.be.json
+          response.body.should.be.a('object')
+          response.body.should.have.property(`error`)
+          response.body.error.should.equal(`Request body must have "packed" property with a boolean value.`)
+          done()
+        }))
+    })
   })
 })
