@@ -35,6 +35,7 @@ $(document).ready(() => {
     .then(response => response.json())
     .then(id => {
       appendItem(name, false, id)
+      $('#item_input').val('')
     })
   }
 
