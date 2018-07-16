@@ -62,8 +62,8 @@ app.patch('/api/v1/items/:id', (request, response) => {
   const {id} = request.params;
 
   const { packed } = request.body;
-
-  if (!packed) {
+  console.log(packed)
+  if (packed === undefined) {
     return response.status(422)
       .send({ error: `Request body must have "packed" property with a boolean value.`})
   }

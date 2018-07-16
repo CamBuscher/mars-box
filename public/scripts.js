@@ -61,6 +61,7 @@ $(document).ready(() => {
   }
 
   function updatePackedStatus() {
+    console.log($(this).is(':checked'))
     const id = $(this).parent().attr('id');
     const packed = $(this).is(':checked');
 
