@@ -29,3 +29,40 @@ describe('Client Routes', () => {
       })
   })
 });
+
+describe('API Routes', () => {
+  beforeEach(function (done) {
+    knex.migrate.rollback()
+      .then(function () {
+        knex.migrate.latest()
+          .then(function () {
+            return knex.seed.run()
+              .then(function () {
+                done();
+              });
+          });
+      });
+  });
+
+  describe('GET /api/v1/items', () => {
+    it('should return an array of space items', done => {
+      chai.request(server)
+      .get('/api/v1/items')
+      .end((error, response) => {
+        response.should.have.status(200)
+        response.should.be.json;
+        response.body.should.be.a('array');
+        response.body.length.should.equal(3);
+        response.body[0].should.have.property('id');
+        response.body[0].id.should.equal(1);
+        response.body[0].should.have.property('name');
+        response.body[0].name.should.equal('toothpaste');
+        response.body[0].should.have.property('packed');
+        response.body[0].packed.should.equal(false);
+        response.body[0].should.have.property('created_at')
+        response.body[0].should.have.property('updated_at')
+        done();
+      })
+    })
+  })
+})
