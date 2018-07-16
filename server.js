@@ -58,4 +58,24 @@ app.delete('/api/v1/items/:id', (request, response) => {
     .catch(error => response.status(500).json(error))
 })
 
+app.put('/api/v1/items/:id', (request, response) => {
+  const {id} = request.params;
+
+  const { packed } = request.body;
+
+  if (!packed) {
+    return response.status(422)
+      .send({ error: `Request body must have "packed" property with a boolean value.`})
+  }
+
+  database('items').where('id', id)
+    .update({packed})
+    .then(() => {
+      response.status(201).json({id, packed})
+    })
+    .catch(error => {
+      response.status(500).json({ error })
+    })
+})
+
 module.exports = app
