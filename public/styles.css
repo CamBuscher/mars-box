@@ -1,3 +1,41 @@
 body {
   text-align: center;
+  width: 80%;
+  margin: auto;
+}
+
+hr {
+  margin-top: 30px;
+  width: 75%;
+}
+
+h1 {
+  font-size: 60px;
+  font-family: 'Coda Caption', sans-serif;
+}
+
+button {
+  color: white;
+  border-radius: 4px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  background-color: black
+}
+
+.list_item {
+  border: 1px solid black;
+  box-shadow: 1px 1px 3px;
+  width: 300px;
+  min-height: 100px;
+  margin: 25px auto;
+  padding: 20px;
+}
+
+.list_item h2 {
+  font-family: 'Coda Caption', sans-serif;
+  font-size: 18px;
+  margin: 0px;
+}
+
+.list_item button {
+  margin: 20px;
 }

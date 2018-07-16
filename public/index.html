@@ -5,11 +5,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Mars Box</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Coda+Caption:800" rel="stylesheet">
   <link rel="stylesheet" type="text/css" media="screen" href="reset.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
 </head>
 <body>
   <h1>Mars Box</h1>
+
+  <form class='add_item_form'>
+    <input type="text" name="item" id="item_input">
+    <button type='submit'>Add Item</button>
+  </form>
+  <div class='error_space'></div>
+
+  <hr>
+
+  <div class='list'></div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="scripts.js"></script>
 </body>
 </html>
