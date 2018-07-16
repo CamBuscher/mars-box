@@ -99,4 +99,28 @@ describe('API Routes', () => {
       })
     })
   })
+
+  describe('DELETE /api/v1/items/:id', () => {
+    it('should return a 204 status if successfully deleted', done => {
+      chai.request(server)
+      .delete('/api/v1/items/2')
+      .end((error, response) => {
+        response.should.have.status(204)
+        done()
+      })
+    })
+
+    it('should return an error message if no matching item', done => {
+      chai.request(server)
+        .delete('/api/v1/items/2234')
+        .end((error, response) => {
+          response.should.have.status(404)
+          response.should.be.json
+          response.body.should.be.a('object')
+          response.body.should.have.property('error')
+          response.body.error.should.equal(`Please enter a valid ID.`)
+          done()
+        })
+    })
+  })
 })
