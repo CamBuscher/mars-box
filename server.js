@@ -25,4 +25,23 @@ app.get('/api/v1/items', (request, response) => {
     })
 })
 
+app.post('/api/v1/items', (request, response) => {
+  const item = request.body;
+
+  if (!item.name) {
+    return response.status(422)
+      .send({ error: `Expected format: { name: <String>. You're missing a "name" property.`})
+  }
+
+  item.packed = false
+
+  database('items').insert(item, 'id')
+    .then(item_ids => {
+      response.status(201).json({ id: item_ids[0]})
+    })
+    .catch(error => {
+      response.status(500).json({ error })
+    })
+})
+
 module.exports = app
