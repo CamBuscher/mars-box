@@ -14,6 +14,13 @@ h1 {
   font-family: 'Coda Caption', sans-serif;
 }
 
+button {
+  color: white;
+  border-radius: 4px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  background-color: black
+}
+
 .list_item {
   border: 1px solid black;
   box-shadow: 1px 1px 3px;
