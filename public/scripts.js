@@ -27,18 +27,24 @@ $(document).ready(() => {
     e.preventDefault()
     const name = $('#item_input').val()
     
-    return fetch('/api/v1/items', {
-      body: JSON.stringify({name}),
-      headers: {
-        'content-type': 'application/json'
-      },
-      method: 'POST'
-    })
-    .then(response => response.json())
-    .then(id => {
-      appendItem(name, false, id)
-      $('#item_input').val('')
-    })
+    if (name !== '') {
+      return fetch('/api/v1/items', {
+        body: JSON.stringify({name}),
+        headers: {
+          'content-type': 'application/json'
+        },
+        method: 'POST'
+      })
+      .then(response => response.json())
+      .then(id => {
+        appendItem(name, false, id)
+        $('#item_input').val('')
+        $('.error_space').html(``)
+      })
+      .catch(error => console.log(error))
+    } else {
+      $('.error_space').append(`<p>Please enter an item name!</p>`)
+    }
   }
 
   function getAllItems() {
