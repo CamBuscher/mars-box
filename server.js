@@ -71,7 +71,7 @@ app.patch('/api/v1/items/:id', (request, response) => {
   database('items').where('id', id)
     .update({packed})
     .then(() => {
-      response.status(201).json({id, packed})
+      response.status(200).json({id, packed})
     })
     .catch(error => {
       response.status(500).json({ error })
